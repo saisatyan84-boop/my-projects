@@ -28,5 +28,9 @@ jobs:
           FIREBASE_SECRET: ${{ secrets.FIREBASE_SERVICE_JSON }}
         run: echo "$FIREBASE_SECRET" > firebase_key.json
 
-      - name: Run Automation Script
-        run: python auto_news.py
+  - name: Run Automation Script
+  env:
+    NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+    GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  run: python auto_news.py
+
