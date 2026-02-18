@@ -5,8 +5,12 @@ import google.generativeai as genai
 import datetime
 
 # --- CONFIGURATION (FILL THESE IN) ---
-NEWS_API_KEY = "YOUR_NEWSAPI_KEY_HERE"
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY_HERE"
+import firebase_admin
+from firebase_admin import credentials, db
+import requests
+import google.generativeai as genai
+import datetime
+import os
 FIREBASE_KEY_PATH = "firebase_key.json" # The file you downloaded from Firebase
 
 # IMPORTANT: Use your specific Asian database URL
@@ -86,4 +90,5 @@ def fetch_and_publish():
     print("SUCCESS: News published automatically!")
 
 if __name__ == "__main__":
+
     fetch_and_publish()
