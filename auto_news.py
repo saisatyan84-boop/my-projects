@@ -11,6 +11,17 @@ import requests
 import google.generativeai as genai
 import datetime
 import os
+
+# --- LOAD API KEYS FROM ENVIRONMENT ---
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+
+if not NEWS_API_KEY:
+    raise ValueError("NEWS_API_KEY not found")
+
+if not GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY not found")
+
 FIREBASE_KEY_PATH = "firebase_key.json" # The file you downloaded from Firebase
 
 # IMPORTANT: Use your specific Asian database URL
@@ -92,3 +103,4 @@ def fetch_and_publish():
 if __name__ == "__main__":
 
     fetch_and_publish()
+
