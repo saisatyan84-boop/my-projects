@@ -3,7 +3,7 @@ name: Daily News Bot
 on:
   schedule:
     # Runs every day at 8:00 AM UTC
-    - cron: '0 8 * * *'
+    - cron: "0 8 * * *"
   workflow_dispatch: # Allows manual trigger button
 
 jobs:
