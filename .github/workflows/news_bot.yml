@@ -1,0 +1,32 @@
+name: Daily News Bot
+
+on:
+  schedule:
+    # Runs every day at 8:00 AM UTC
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Allows manual trigger button
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install firebase-admin google-generativeai requests
+
+      - name: Create Firebase Key File
+        env:
+          FIREBASE_SECRET: ${{ secrets.FIREBASE_SERVICE_JSON }}
+        run: echo "$FIREBASE_SECRET" > firebase_key.json
+
+      - name: Run Automation Script
+        run: python auto_news.py
