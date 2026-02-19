@@ -42,9 +42,13 @@ def fetch_and_publish():
     print("1. Fetching latest news...")
     # Fetch top business/tech news from US (you can change category/country)
     url = f"https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey={NEWS_API_KEY}"
-    response = requests.get(url)
-    data = response.json()
-
+   response = requests.get(url)
+    try:
+        data = response.json()
+    except Exception as e:
+        print("ERROR: Could not parse JSON. Here is what the website returned:")
+        print(response.text)
+        raise e
     if data['status'] != 'ok' or not data['articles']:
         print("No news found!")
         return
@@ -103,4 +107,5 @@ def fetch_and_publish():
 if __name__ == "__main__":
 
     fetch_and_publish()
+
 
